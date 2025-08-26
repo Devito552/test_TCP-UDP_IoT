@@ -1,20 +1,19 @@
-const net = require("net");
-const readline = require("readline");
-const os = require("os");
+const net = require('net');
+const readline = require('readline');
+const os = require('os');
 
 const PORT = 5000;
-const HOST = "0.0.0.0"; // coloque o IP do servidor
+const HOST = '';
 
 const client = new net.Socket();
-;
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-
 function perguntar() {
-    rl.question("Digite uma mensagem (ou 'sair' para encerrar): ", (msg) => {
+    rl.question("Digite sua mensagem (ou 'sair' para encerrar): ", (msg) => {
         if (msg.toLowerCase() === "sair") {
             client.end();
             rl.close();
@@ -26,15 +25,14 @@ function perguntar() {
 }
 
 client.connect(PORT, HOST, () => {
-    console.log("Conectado ao servidor TCP!");
+    console.log(`Conectado ao servidor TCP!`);
     perguntar();
 });
 
 client.on("data", (data) => {
-    console.log("Resposta do servidor:", data.toString());
+    console.log(`Resposta do servidor: ${data.toString()}`);
 });
 
 client.on("close", () => {
-    console.log("Conexão encerrada.");
+    console.log("Conexão encerrada pelo servidor.");
 });
-
