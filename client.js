@@ -3,7 +3,7 @@ const readline = require("readline");
 const os = require("os");
 
 const PORT = 5000;
-const HOST = "10.91.236.143"; // coloque o IP do servidor
+const HOST = "0.0.0.0"; // coloque o IP do servidor
 
 const client = new net.Socket();
 ;
@@ -37,3 +37,4 @@ client.on("data", (data) => {
 client.on("close", () => {
     console.log("Conexão encerrada.");
 });
+
